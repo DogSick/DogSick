@@ -1,6 +1,11 @@
 <br>
 <h1 align="middle" style="text-weight: bold">DogSick 위치 기반 동물병원 안내</h1>
 
+<div align="center">
+  <img src="https://github.com/DogSick/DogSick/assets/134928447/0eea1ffb-8b92-4e55-ac6f-24ddcf1efb9e" height=100 width=100>
+</div>
+
+
 
 ## 프로젝트 소개
 사용자의 위치를 기반으로 주변 동물 병원 안내하는 서비스입니다.
