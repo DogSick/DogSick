@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'loadingMain.dart';
+import 'firstScreen.dart';
 import 'memo.dart';
 import 'memoDetail.dart';
 import 'newMemo.dart';
 
-void main() {
+late SharedPreferences prefs;
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  prefs = await SharedPreferences.getInstance();
+
   runApp(const MyApp());
 }
 
@@ -13,9 +22,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
+
     return MaterialApp(
-      initialRoute: '/memo',
+            debugShowCheckedModeBanner: false,
+      initialRoute: '/',
       routes: {
+        '/': (context) => FirstScreen(),
         '/memo': (context) => Memo(),
         '/memoDetail': (context) => MemoDetail(),
         '/newMemo': (context) => NewMemo(),
