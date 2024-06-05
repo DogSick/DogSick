@@ -45,7 +45,7 @@ class FirstScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => memo()),
+                          MaterialPageRoute(builder: (context) => Memo()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -74,7 +74,7 @@ class FirstScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => searchHospital()),
+                              builder: (context) => SearchHospital()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -107,7 +107,7 @@ class FirstScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => mapMain()),
+                          MaterialPageRoute(builder: (context) => MapMain()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -135,7 +135,7 @@ class FirstScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => emergency()),
+                          MaterialPageRoute(builder: (context) => Emergency()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
