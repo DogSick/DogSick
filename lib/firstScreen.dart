@@ -13,7 +13,27 @@ class FirstScreen extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(fontFamily: 'Pretendard'),
         home: Scaffold(
-          appBar: AppBar(title: Text("Location")),
+          appBar: AppBar(
+            centerTitle: true,
+            title: Column(
+              children: [
+                Text(
+                  'Location',
+                  style: TextStyle(fontSize: 12),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/icon_location.png'),
+                    Text(
+                      '강남구 신사동 115-8',
+                      style: TextStyle(fontSize: 10),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
           body: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
