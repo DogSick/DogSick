@@ -11,8 +11,8 @@ class NewMemo extends StatefulWidget {
 class _NewMemoState extends State<NewMemo> {
   final dio = Dio();
 
-  final url = 'http://192.168.0.50:8080/mydog';
-  // final url = 'http://10.0.2.2:8080/mydog';
+  // final url = 'http://192.168.0.50:8080/mydog';
+  final url = 'http://10.0.2.2:8080/mydog';
 
   DateTime? _selectedDate;
   TextEditingController? _myDogLocation;

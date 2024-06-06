@@ -14,8 +14,8 @@ class MemoDetail extends StatefulWidget {
 class _MemoDetailState extends State<MemoDetail> {
   final dio = Dio();
 
-  final url = 'http://192.168.0.50:8080/mydog';
-  // final url = 'http://10.0.2.2:8080/mydog';
+  // final url = 'http://192.168.0.50:8080/mydog';
+  final url = 'http://10.0.2.2:8080/mydog';
   MemoDTO? memo;
 
   @override
@@ -143,6 +143,20 @@ class _MemoDetailState extends State<MemoDetail> {
             );
           }
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final finalUrl = url + '/' + '${memo?.myDogCode.toString()}';
+          print(finalUrl);
+          var response = await dio.delete(finalUrl);
+
+          Navigator.of(context).pop();
+        },
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Icon(Icons.delete),
       ),
     );
   }
