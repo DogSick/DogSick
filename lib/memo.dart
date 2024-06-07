@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+late SharedPreferences prefs;
 
 class Memo extends StatefulWidget {
   const Memo({super.key});
@@ -11,7 +14,6 @@ class Memo extends StatefulWidget {
 class _MemoState extends State<Memo> {
   final dio = Dio();
 
-  // final url = 'http://192.168.0.50:8080/mydog';
   final url = 'http://10.0.2.2:8080/mydog';
   List? list;
 
@@ -22,7 +24,16 @@ class _MemoState extends State<Memo> {
   }
 
   Future<List?> _asyncList() async {
-    final response = await dio.get(url);
+    prefs = await SharedPreferences.getInstance();
+    String? id = prefs.getString('identifier');
+    Map<String, String> reqHeader = {
+      'identifier': prefs.getString('identifier') ?? ''
+    };
+    final response = await dio.get(url, options: Options(headers: reqHeader));
+
+    if (id == null) {
+      prefs.setString("identifier", response.headers['identifier']![0]);
+    }
 
     setState(() {
       list = response.data['list'];
@@ -34,8 +45,13 @@ class _MemoState extends State<Memo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         centerTitle: true,
+        leading: BackButton(
+          color: Color(0xff63C54A),
+        ),
         title: Column(
           children: [
             Text(
@@ -54,18 +70,18 @@ class _MemoState extends State<Memo> {
             )
           ],
         ),
+        actions: [
+          SizedBox(
+            width: 60,
+          ),
+        ],
       ),
       body: FutureBuilder(
         future: _asyncList(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData == false) {
             return Center(
-              child: Column(
-                children: [
-                  Text('데이터가 없습니다.'),
-                  CircularProgressIndicator(),
-                ],
-              ),
+              child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
             return Text(
@@ -84,6 +100,11 @@ class _MemoState extends State<Memo> {
                   child: InkWell(
                     child: Ink(
                       decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                          ),
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -139,8 +160,21 @@ class _MemoState extends State<Memo> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           Navigator.of(context).pushNamed('/newMemo');
+          // String testUrl = 'http://10.0.2.2:8080/mydog/header';
+          // Map<String, String> headers = {'test': 'test'};
+          //
+          // var response = await dio.get(testUrl,
+          //     queryParameters: headers,
+          //     options: Options(
+          //       headers: headers,
+          //     ));
+          // print(response.headers);
+          // print(response.headers['return']?[0]);
+          // print(response.headers['date']);
+          // print(response.headers['id']?[0]);
+          // print(response.data);
         },
         backgroundColor: Color(0xffFFFFFF),
         shape: RoundedRectangleBorder(
