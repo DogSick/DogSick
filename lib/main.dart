@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
 
     return MaterialApp(
-            debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
         '/': (context) => FirstScreen(),

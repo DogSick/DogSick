@@ -1,8 +1,46 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SearchHospital extends StatelessWidget {
   const SearchHospital({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SearchApp(),
+    );
+  }
+}
+
+class SearchApp extends StatefulWidget {
+  const SearchApp({super.key});
+
+  @override
+  State<SearchApp> createState() => _SearchAppState();
+}
+
+class _SearchAppState extends State<SearchApp> {
+  List<dynamic> data = [];
+  List<dynamic> filteredData = [];
+  TextEditingController _editingController = TextEditingController();
+  ScrollController _scrollController = ScrollController();
+  int page = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.offset >=
+              _scrollController.position.maxScrollExtent &&
+          !_scrollController.position.outOfRange) {
+        page++;
+        getJSONData();
+      }
+    });
+    getJSONData(); // 초기 데이터 로드
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +74,9 @@ class SearchHospital extends StatelessWidget {
             Container(
               width: 315,
               height: 36,
-              margin: EdgeInsets.only(left: 50, top: 45, right: 50),
+              margin: EdgeInsets.only(left: 50, top: 50, right: 50),
               child: TextField(
+                controller: _editingController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -49,21 +88,97 @@ class SearchHospital extends StatelessWidget {
                   hintStyle: TextStyle(
                     fontSize: 12,
                   ),
-                  suffixIcon: Icon(
-                    Icons.search,
-                    color: Color.fromRGBO(99, 197, 74, 100),
-                  ),
                   border: OutlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromRGBO(99, 197, 74, 100)),
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
+                onChanged: (value) {
+                  filterData(value);
+                },
               ),
+            ),
+            Expanded(
+              child: filteredData.isEmpty
+                  ? Center(
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 150),
+                        child: Text(
+                          '검색 결과가 없어요.',
+                          style: TextStyle(fontSize: 12, color: Colors.black),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    )
+                  : ListView.builder(
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(filteredData[index]['lindjobgbnnm']
+                                    .toString()),
+                                Text(filteredData[index]['bplcnm'].toString()),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: filteredData.length,
+                      controller: _scrollController,
+                    ),
             ),
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          page = 1;
+          data.clear();
+          getJSONData();
+        },
+        backgroundColor: Color.fromRGBO(99, 197, 74, 100),
+        child: Icon(
+          Icons.search,
+          color: Colors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  Future<void> getJSONData() async {
+    try {
+      String jsonString =
+          await rootBundle.loadString('assets/data/hospitalData.json');
+      final jsonResponse = json.decode(jsonString);
+      setState(() {
+        data = jsonResponse;
+        filterData(_editingController.text);
+      });
+    } catch (e) {
+      print("Error loading JSON: $e");
+    }
+  }
+
+  void filterData(String query) {
+    List<dynamic> results = [];
+    if (query.isEmpty) {
+      results = data;
+    } else {
+      results = data.where((item) {
+        final name = item['bplcnm'].toString().toLowerCase();
+        final job = item['lindjobgbnnm'].toString().toLowerCase();
+        final queryLower = query.toLowerCase();
+        return name.contains(queryLower) || job.contains(queryLower);
+      }).toList();
+    }
+
+    setState(() {
+      filteredData = results;
+    });
   }
 }
