@@ -49,16 +49,21 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff63C54A),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(0),
                       ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.45,
                         height: MediaQuery.of(context).size.height * 0.3,
+                        margin: EdgeInsets.all(0),
                         alignment: Alignment(0.8, 0.8),
-                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/myrecord.png'),
+                              fit: BoxFit.fill
+                              )
+                            ),
                         child: Text(
                           "MyDog \n 병원기록",
                           style: TextStyle(

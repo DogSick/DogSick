@@ -53,6 +53,16 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.2.3
+  flutter_native_splash: ^2.4.0
+
+flutter_native_splash:
+  android: ture
+  ios: false
+  web: false
+
+  color: "#FFFFFF"
+  image: "assets/images/logo.jpg"
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,6 +81,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
+    - .env
+    - json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -112,3 +124,4 @@ flutter:
           weight: 600
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
