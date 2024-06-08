@@ -15,7 +15,7 @@ late SharedPreferences prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Future.delayed(const Duration(seconds: 10));
+  await Future.delayed(const Duration(seconds: 3));
   FlutterNativeSplash.remove();
 
   await dotenv.load(fileName: ".env");
