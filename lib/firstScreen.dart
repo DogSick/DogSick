@@ -41,24 +41,24 @@ class FirstScreen extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Memo()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff63C54A),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: EdgeInsets.all(0),
-                      ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.3,
-                        alignment: Alignment(0.8, 0.8),
-                        margin: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.32,
+                        margin: EdgeInsets.all(0),
+                        alignment: Alignment(0.7, 0.8),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/myrecord.png'),
+                              fit: BoxFit.fill
+                              )
+                            ),
                         child: Text(
                           "MyDog \n 병원기록",
                           style: TextStyle(
@@ -68,26 +68,19 @@ class FirstScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => SearchHospital()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff6A8E5E),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: EdgeInsets.all(0),
-                      ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        alignment: Alignment(-0.8, 0.9),
-                        margin: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.43,
+                        alignment: Alignment(-0.7, 0.8),
+                        margin: EdgeInsets.all(0),
                         child: Text(
                           "병원검색",
                           style: TextStyle(
@@ -95,32 +88,31 @@ class FirstScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/hospitalsearch.png'),
+                                fit: BoxFit.fill
+                            )
+                        ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(width: 10),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => MapMain()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xffF8FFF8),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: EdgeInsets.all(0),
-                      ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        alignment: Alignment(-0.6, 0.9),
-                        margin: EdgeInsets.all(10),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.43,
+                        alignment: Alignment(-0.6, 0.8),
+                        margin: EdgeInsets.all(0),
                         child: Text(
                           "가까운 병원 검색",
                           style: TextStyle(
@@ -128,27 +120,26 @@ class FirstScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Color(0xff63C54A)),
                         ),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/nearhospital.png'),
+                                fit: BoxFit.fill
+                            )
+                      ),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    ElevatedButton(
-                      onPressed: () {
+                    InkWell(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => Emergency()),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff005600),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                        padding: EdgeInsets.all(0),
-                      ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        height: MediaQuery.of(context).size.height * 0.3,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.32,
                         alignment: Alignment(-0.6, 0.8),
-                        margin: EdgeInsets.all(10),
+                        margin: EdgeInsets.all(0),
                         child: Text(
                           "응급 상황",
                           style: TextStyle(
@@ -156,6 +147,12 @@ class FirstScreen extends StatelessWidget {
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
+                        ),
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/emergency.png'),
+                                fit: BoxFit.fill
+                            )
                         ),
                       ),
                     ),

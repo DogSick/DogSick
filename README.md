@@ -3,6 +3,7 @@
 
 <div align="center">
   <img src="https://github.com/DogSick/DogSick/assets/134928447/0eea1ffb-8b92-4e55-ac6f-24ddcf1efb9e" height=100 width=100>
+  <img src="https://github.com/DogSick/DogSick/assets/134928447/b2a8df19-e31e-4be8-85ee-a90492fa9a84">
 </div>
 
 
