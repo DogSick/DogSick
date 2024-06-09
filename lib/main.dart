@@ -15,13 +15,15 @@ late SharedPreferences prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
-  dotenv.env['naver_map_avi'];
+
+  dotenv.env['naver_map_api'];
 
   String mapId = dotenv.get('naver_map_api');
   await NaverMapSdk.instance.initialize(
     clientId: mapId,
     onAuthFailed: (ex) {
-      debugPrint("********* 네이버맵 인증 오류 : $ex *********");
+      
+      debugPrint("********** 네이버맵 인증오류 : $ex **********");
     },
   );
 
