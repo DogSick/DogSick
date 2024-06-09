@@ -119,9 +119,12 @@ class _SearchAppState extends State<SearchApp> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
+                                Text(filteredData[index]['bplcnm'].toString()),
                                 Text(filteredData[index]['lindjobgbnnm']
                                     .toString()),
-                                Text(filteredData[index]['bplcnm'].toString()),
+                                Text(filteredData[index]['rdnwhladdr']
+                                    .toString()),
+                                Text(filteredData[index]['sitetel'].toString())
                               ],
                             ),
                           ),
@@ -134,19 +137,6 @@ class _SearchAppState extends State<SearchApp> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          page = 1;
-          data.clear();
-          getJSONData();
-        },
-        backgroundColor: Color.fromRGBO(99, 197, 74, 100),
-        child: Icon(
-          Icons.search,
-          color: Colors.white,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -171,9 +161,8 @@ class _SearchAppState extends State<SearchApp> {
     } else {
       results = data.where((item) {
         final name = item['bplcnm'].toString().toLowerCase();
-        final job = item['lindjobgbnnm'].toString().toLowerCase();
         final queryLower = query.toLowerCase();
-        return name.contains(queryLower) || job.contains(queryLower);
+        return name.contains(queryLower);
       }).toList();
     }
 
