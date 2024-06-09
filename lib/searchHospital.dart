@@ -44,6 +44,7 @@ class _SearchAppState extends State<SearchApp> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dt = DateTime.now();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -114,17 +115,102 @@ class _SearchAppState extends State<SearchApp> {
                   : ListView.builder(
                       itemBuilder: (context, index) {
                         return Card(
+                          margin: EdgeInsets.only(top: 10),
                           child: Container(
+                            color: Colors.white,
                             padding: EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(filteredData[index]['bplcnm'].toString()),
-                                Text(filteredData[index]['lindjobgbnnm']
-                                    .toString()),
-                                Text(filteredData[index]['rdnwhladdr']
-                                    .toString()),
-                                Text(filteredData[index]['sitetel'].toString())
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      filteredData[index]['bplcnm'].toString(),
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        filteredData[index]['lindjobgbnnm']
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: 8,
+                                          color: Color.fromRGBO(
+                                              153, 153, 153, 100),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    filteredData[index]['rdnwhladdr']
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color:
+                                            Color.fromRGBO(153, 153, 153, 100)),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    filteredData[index]['sitetel'].toString(),
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color:
+                                            Color.fromRGBO(112, 178, 222, 100)),
+                                  ),
+                                ),
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.watch_later,
+                                        size: 15,
+                                        color: Color.fromRGBO(99, 197, 74, 100),
+                                      ),
+                                      Text(
+                                        filteredData[index]['openhour']
+                                            .toString(),
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Text(
+                                        '~',
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Text(
+                                        filteredData[index]['closehour']
+                                            .toString(),
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 200),
+                                        width: 100,
+                                        height: 30,
+                                        child: OutlinedButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            '상세보기',
+                                            style: TextStyle(
+                                                fontSize: 8,
+                                                color: Color.fromRGBO(
+                                                    99, 197, 74, 100)),
+                                          ),
+                                          style: OutlinedButton.styleFrom(
+                                            backgroundColor: Colors.white,
+                                            side: BorderSide(
+                                              color: Color.fromRGBO(
+                                                  99, 197, 74, 100),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
