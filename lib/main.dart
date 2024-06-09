@@ -28,17 +28,6 @@ void main() async {
   await Future.delayed(const Duration(seconds: 3));
   FlutterNativeSplash.remove();
 
-  await dotenv.load(fileName: ".env");
-  dotenv.env['naver_map_api'];
-
-  String mapId = dotenv.get('naver_map_api');
-  await NaverMapSdk.instance.initialize(
-    clientId: mapId,
-    onAuthFailed: (ex) {
-      debugPrint("*************** 네이버맵 인증 오류 : $ex **********");
-    },
-  );
-
   prefs = await SharedPreferences.getInstance();
 
   runApp(const MyApp());
