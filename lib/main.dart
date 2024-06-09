@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'loadingMain.dart';
@@ -11,6 +13,16 @@ late SharedPreferences prefs;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
+  dotenv.env['naver_map_avi'];
+
+  String mapId = dotenv.get('naver_map_api');
+  await NaverMapSdk.instance.initialize(
+    clientId: mapId,
+    onAuthFailed: (ex) {
+      debugPrint("********* 네이버맵 인증 오류 : $ex *********");
+    },
+  );
 
   prefs = await SharedPreferences.getInstance();
 
