@@ -49,8 +49,8 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.32,
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         margin: EdgeInsets.all(0),
                         alignment: Alignment(0.7, 0.8),
                         decoration: BoxDecoration(
@@ -77,8 +77,8 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.43,
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        height: MediaQuery.of(context).size.height * 0.4,
                         alignment: Alignment(-0.7, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
@@ -109,8 +109,8 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.43,
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        height: MediaQuery.of(context).size.height * 0.4,
                         alignment: Alignment(-0.6, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
@@ -136,8 +136,8 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.32,
+                        width: MediaQuery.of(context).size.width * 0.46,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         alignment: Alignment(-0.6, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
