@@ -21,6 +21,7 @@ class _LocateState extends State<Locate> {
   double lat = 0;
   double lng = 0;
   String apiUrl = 'https://dapi.kakao.com/v2/local/geo/coord2regioncode';
+  String apiKey = '';
   String position = '';
 
   _locateMe() async {
@@ -72,7 +73,6 @@ class _LocateState extends State<Locate> {
         '&y=' +
         lat.toString() +
         '&input_coord=WGS84';
-    String apiKey = '933d2df92a5af1c1024efdf32b3f268a';
 
     var response = await http.get(Uri.parse(finalApiUrl),
         headers: {"Authorization": "KakaoAK $apiKey"});
