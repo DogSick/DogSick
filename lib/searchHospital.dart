@@ -11,6 +11,7 @@ class SearchHospital extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Pretendard'),
       home: SearchApp(),
     );
@@ -225,17 +226,17 @@ class _SearchAppState extends State<SearchApp> {
                                         height: 30,
                                         child: OutlinedButton(
                                           onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HospitalDetail(
-                                                  bplcnm: filteredData[index]
-                                                          ['bplcnm']
-                                                      .toString(),
-                                                ),
-                                              ),
-                                            );
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         HospitalDetail(
+                                            //       bplcnm: filteredData[index]
+                                            //               ['bplcnm']
+                                            //           .toString(),
+                                            //     ),
+                                            //   ),
+                                            // );
                                           },
                                           child: Text(
                                             '상세보기',
