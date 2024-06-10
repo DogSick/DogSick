@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'hospitalDetail.dart';
+
 class SearchHospital extends StatelessWidget {
   const SearchHospital({super.key});
 
@@ -44,11 +46,14 @@ class _SearchAppState extends State<SearchApp> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime dt = DateTime.now();
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
+        leading: BackButton(
+          color: Color(0xff63C54A),
+        ),
         title: Column(
           children: [
             Text(
@@ -58,15 +63,20 @@ class _SearchAppState extends State<SearchApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/Location.png'),
+                Image.asset('assets/images/icon_location.png'),
                 Text(
                   '강남구 신사동 115-8',
                   style: TextStyle(fontSize: 10),
-                )
+                ),
               ],
-            ),
+            )
           ],
         ),
+        actions: [
+          SizedBox(
+            width: 60,
+          ),
+        ],
       ),
       body: Container(
         color: Colors.white,
@@ -167,10 +177,14 @@ class _SearchAppState extends State<SearchApp> {
                                 Container(
                                   child: Row(
                                     children: [
-                                      Icon(
-                                        Icons.watch_later,
-                                        size: 15,
-                                        color: Color.fromRGBO(99, 197, 74, 100),
+                                      Container(
+                                        margin: EdgeInsets.only(right: 3),
+                                        child: Icon(
+                                          Icons.watch_later,
+                                          size: 15,
+                                          color:
+                                              Color.fromRGBO(99, 197, 74, 100),
+                                        ),
                                       ),
                                       Text(
                                         filteredData[index]['openhour']
@@ -187,11 +201,41 @@ class _SearchAppState extends State<SearchApp> {
                                         style: TextStyle(fontSize: 12),
                                       ),
                                       Container(
-                                        margin: EdgeInsets.only(left: 200),
+                                        margin: EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          '휴무일 : ',
+                                          style: TextStyle(fontSize: 10),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 90,
+                                        child: Text(
+                                          filteredData[index]['closeday'] !=
+                                                  'null'
+                                              ? filteredData[index]['closeday']
+                                                  .toString()
+                                              : '없음',
+                                          style: TextStyle(fontSize: 10),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 66),
                                         width: 100,
                                         height: 30,
                                         child: OutlinedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    hospitalDetail(
+                                                  bplcnm: filteredData[index]
+                                                          ['bplcnm']
+                                                      .toString(),
+                                                ),
+                                              ),
+                                            );
+                                          },
                                           child: Text(
                                             '상세보기',
                                             style: TextStyle(
