@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'location.dart';
 import 'searchHospital.dart';
 import 'mapMain.dart';
 import 'emergency.dart';
@@ -25,10 +26,7 @@ class FirstScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('assets/images/icon_location.png'),
-                    Text(
-                      '강남구 신사동 115-8',
-                      style: TextStyle(fontSize: 10),
-                    ),
+                    Locate(),
                   ],
                 )
               ],
@@ -55,10 +53,8 @@ class FirstScreen extends StatelessWidget {
                         alignment: Alignment(0.7, 0.8),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/images/myrecord.png'),
-                              fit: BoxFit.fill
-                              )
-                            ),
+                                image: AssetImage('assets/images/myrecord.png'),
+                                fit: BoxFit.fill)),
                         child: Text(
                           "MyDog \n 병원기록",
                           style: TextStyle(
@@ -90,10 +86,9 @@ class FirstScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/hospitalsearch.png'),
-                                fit: BoxFit.fill
-                            )
-                        ),
+                                image: AssetImage(
+                                    'assets/images/hospitalsearch.png'),
+                                fit: BoxFit.fill)),
                       ),
                     ),
                   ],
@@ -122,10 +117,9 @@ class FirstScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/nearhospital.png'),
-                                fit: BoxFit.fill
-                            )
-                      ),
+                                image: AssetImage(
+                                    'assets/images/nearhospital.png'),
+                                fit: BoxFit.fill)),
                       ),
                     ),
                     InkWell(
@@ -150,10 +144,9 @@ class FirstScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/emergency.png'),
-                                fit: BoxFit.fill
-                            )
-                        ),
+                                image:
+                                    AssetImage('assets/images/emergency.png'),
+                                fit: BoxFit.fill)),
                       ),
                     ),
                   ],

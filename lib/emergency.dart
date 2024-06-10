@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'location.dart';
+
 class Emergency extends StatefulWidget {
   const Emergency({super.key});
 
@@ -34,10 +36,7 @@ class _EmergencyState extends State<Emergency> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/icon_location.png'),
-                  Text(
-                    '강남구 신사동 115-8',
-                    style: TextStyle(fontSize: 10),
-                  )
+                  Locate()
                 ],
               )
             ],
