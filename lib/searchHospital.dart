@@ -11,6 +11,7 @@ class SearchHospital extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(fontFamily: 'Pretendard'),
       home: SearchApp(),
     );
   }
@@ -228,7 +229,7 @@ class _SearchAppState extends State<SearchApp> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    hospitalDetail(
+                                                    HospitalDetail(
                                                   bplcnm: filteredData[index]
                                                           ['bplcnm']
                                                       .toString(),
