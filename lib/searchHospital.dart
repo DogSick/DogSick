@@ -4,28 +4,14 @@ import 'package:flutter/services.dart';
 import 'location.dart';
 import 'hospitalDetail.dart';
 
-
-class SearchHospital extends StatelessWidget {
+class SearchHospital extends StatefulWidget {
   const SearchHospital({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Pretendard'),
-      home: SearchApp(),
-    );
-  }
+  State<SearchHospital> createState() => _SearchAppState();
 }
 
-class SearchApp extends StatefulWidget {
-  const SearchApp({super.key});
-
-  @override
-  State<SearchApp> createState() => _SearchAppState();
-}
-
-class _SearchAppState extends State<SearchApp> {
+class _SearchAppState extends State<SearchHospital> {
   List<dynamic> data = [];
   List<dynamic> filteredData = [];
   TextEditingController _editingController = TextEditingController();
@@ -223,17 +209,17 @@ class _SearchAppState extends State<SearchApp> {
                                         height: 30,
                                         child: OutlinedButton(
                                           onPressed: () {
-                                            // Navigator.push(
-                                            //   context,
-                                            //   MaterialPageRoute(
-                                            //     builder: (context) =>
-                                            //         HospitalDetail(
-                                            //       bplcnm: filteredData[index]
-                                            //               ['bplcnm']
-                                            //           .toString(),
-                                            //     ),
-                                            //   ),
-                                            // );
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HospitalDetail(
+                                                  bplcnm: filteredData[index]
+                                                          ['bplcnm']
+                                                      .toString(),
+                                                ),
+                                              ),
+                                            );
                                           },
                                           child: Text(
                                             '상세보기',
