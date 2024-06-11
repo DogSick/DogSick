@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'location.dart';
 import 'hospitalDetail.dart';
+
 
 class SearchHospital extends StatelessWidget {
   const SearchHospital({super.key});
@@ -65,11 +65,8 @@ class _SearchAppState extends State<SearchApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/icon_location.png'),
-                Text(
-                  '강남구 신사동 115-8',
-                  style: TextStyle(fontSize: 10),
-                ),
+                Image.asset('assets/images/Location.png'),
+                Locate(),
               ],
             )
           ],
