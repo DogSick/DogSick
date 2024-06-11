@@ -12,9 +12,12 @@ class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'Pretendard'),
         home: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
+            backgroundColor: Colors.white,
             centerTitle: true,
             title: Column(
               children: [
@@ -47,21 +50,23 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.32,
+                        width: 200,
+                        height: 229,
                         margin: EdgeInsets.all(0),
-                        alignment: Alignment(0.7, 0.8),
+                        alignment: Alignment(0.58, 0.8),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/myrecord.png'),
-                                fit: BoxFit.fill)),
+                              image: AssetImage('assets/images/myrecord.png'),
+                              )
+                            ),
+
                         child: Text(
-                          "MyDog \n 병원기록",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
+                        "병원기록",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
                       ),
                     ),
                     InkWell(
@@ -73,22 +78,22 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.43,
-                        alignment: Alignment(-0.7, 0.8),
+                        width: 200,
+                        height: 344.5,
+                        alignment: Alignment(-0.45, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
                           "병원검색",
                           style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/hospitalsearch.png'),
-                                fit: BoxFit.fill)),
+                                image: AssetImage('assets/images/hospitalsearch.png'),
+                            )
+                        ),
                       ),
                     ),
                   ],
@@ -104,22 +109,22 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.43,
-                        alignment: Alignment(-0.6, 0.8),
+                        width: 200,
+                        height: 344.5,
+                        alignment: Alignment(-0.15, 0.83),
                         margin: EdgeInsets.all(0),
                         child: Text(
                           "가까운 병원 검색",
                           style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Color(0xff63C54A)),
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(
-                                    'assets/images/nearhospital.png'),
-                                fit: BoxFit.fill)),
+                                image: AssetImage('assets/images/nearhospital.png'),
+                            )
+                      ),
                       ),
                     ),
                     InkWell(
@@ -130,23 +135,24 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width * 0.45,
-                        height: MediaQuery.of(context).size.height * 0.32,
-                        alignment: Alignment(-0.6, 0.8),
+                        width: 200,
+                        height: 229,
+                        alignment: Alignment(-0.42, 0.68),
                         margin: EdgeInsets.all(0),
                         child: Text(
                           "응급 상황",
                           style: TextStyle(
                               fontFamily: 'Pretendard',
-                              fontSize: 15,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image:
-                                    AssetImage('assets/images/emergency.png'),
-                                fit: BoxFit.fill)),
+                                image: AssetImage('assets/images/emergency.png'),
+                            )
+                        ),
+
                       ),
                     ),
                   ],
