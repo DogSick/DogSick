@@ -164,43 +164,40 @@ class HospitalDetail extends StatelessWidget {
                           '영업 시간: ${hospital['openhour']} ~ ${hospital['closehour']}'),
                       SizedBox(height: 10),
                       Text('휴무일: ${hospital['closeday'] ?? '없음'}'),
-                      Container(
-                        child: Column(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {},
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xff404A3C),
-                              ),
-                              child: Text(
-                                '위치찾기',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
+                      SizedBox(height: 35),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xff404A3C),
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Color(0xff63C54A),
-                                  ),
-                                  child: Text(
-                                    '전화하기',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ],
+                            child: Text(
+                              '위치찾기',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
+                          SizedBox(width: 40),
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xff63C54A),
+                            ),
+                            child: Text(
+                              '전화하기',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                          SizedBox(width: 20),
+                        ],
+                      )
                     ]),
               ),
             ),
