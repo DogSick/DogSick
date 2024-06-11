@@ -2,7 +2,6 @@ import 'package:dogsick_project/searchHospital.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
-import 'package:geolocator/geolocator.dart';
 
 
 class MapMain extends StatefulWidget {
@@ -20,28 +19,6 @@ class MapMain extends StatefulWidget {
 
 class _MapMainState extends State<MapMain> {
 
-  String? latitude;
-  String? longitude;
-
-  getGeoData() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('permissions are denied');
-      }
-    }
-
-    Location location = Location();
-    await location.getCurrentLocation();
-    print(location.latitude);
-    print(location.longitude);
-    // setState(() {
-    //   latitude.position.latitude.toString();
-    //   longitude.position.longitude.toString();
-    // });
-  }
-
   bool _showBottomSheet = false;
 
   String result = "";
@@ -52,7 +29,7 @@ class _MapMainState extends State<MapMain> {
     // TODO: implement initState
     super.initState();
     data = new List.empty(growable: true);
-    getGeoData();
+
   }
 
   @override
@@ -127,25 +104,35 @@ class _MapMainState extends State<MapMain> {
           );
 
 
-          final marker = NMarker(id: 'position',
+          final marker = NMarker(id: NLatLng(37.4998, 127.0271).toString(),
             position: const NLatLng(37.4998, 127.0271),
             anchor: const NPoint(0.5, 0.5),
             size: const Size(60, 60),
             // iconTintColor: Colors.green,
             icon: const NOverlayImage.fromAssetImage('assets/images/marker.png'),
           );
-          // controller.addOverlay(location);
+          controller.addOverlay(location);
           controller.addOverlay(marker);
           // controller.addOverlayAll(markers)
 
           marker.setOnTapListener((NMarker marker) {
             // 마커를 클릭했을 때 실행할 코드
+            print(marker);
+            setState(() {
+              this._showBottomSheet = true;
+            });
+            // this._showBottomSheet = !this._showBottomSheet;
+            print(this._showBottomSheet);
           });
         },
+          onMapTapped: (NPoint point, NLatLng latLng) {
+          // 지도를 클릭했을 때 실행할 코드
+            setState(() {
+              this._showBottomSheet = false;
+            });
+            print(this._showBottomSheet);
+          },
       ),
-          this._showBottomSheet
-          ? HospitalInfoWidget()
-              : Container(),
       Container(
         alignment: Alignment.topCenter,
         margin: EdgeInsets.only(top: 20),
@@ -173,6 +160,9 @@ class _MapMainState extends State<MapMain> {
               ),
             ),
           ),
+          this._showBottomSheet
+              ? HospitalInfoWidget()
+              : Container(),
         ],
       ),
     );
@@ -185,39 +175,23 @@ class HospitalInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
+      right: 50,
+      left: 50,
+      bottom: 0,
         child: Container(
+          alignment: Alignment.bottomCenter,
+          margin: EdgeInsets.only(bottom: 40),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(20),
             ),
           ),
-          width: MediaQuery.of(context).size.width,
+          width: 200,
           height: 100.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          ),
+          // child: Column(
+          //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // ),
         ),
     );
-  }
-}
-
-class Location {
-  double latitude = 0;
-  double longitude = 0;
-
-  Future<void> getCurrentLocation() async {
-    LocationPermission permission = await Geolocator.checkPermission();
-    // print(permission);
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-    }
-    try {
-      Position position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      latitude = position.latitude;
-      longitude = position.longitude;
-    } catch (e) {
-      print(e);
-    }
   }
 }
