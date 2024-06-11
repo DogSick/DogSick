@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import 'location.dart';
 import 'memo.dart';
 import 'memoDto.dart';
 
@@ -50,10 +51,7 @@ class _MemoDetailState extends State<MemoDetail> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset('assets/images/icon_location.png'),
-                Text(
-                  '강남구 신사동 115-8',
-                  style: TextStyle(fontSize: 10),
-                ),
+                Locate(),
               ],
             )
           ],

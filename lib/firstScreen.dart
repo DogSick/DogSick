@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'location.dart';
 import 'searchHospital.dart';
 import 'mapMain.dart';
 import 'emergency.dart';
@@ -28,10 +29,7 @@ class FirstScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('assets/images/icon_location.png'),
-                    Text(
-                      '강남구 신사동 115-8',
-                      style: TextStyle(fontSize: 10),
-                    ),
+                    Locate(),
                   ],
                 )
               ],
@@ -61,6 +59,7 @@ class FirstScreen extends StatelessWidget {
                               image: AssetImage('assets/images/myrecord.png'),
                               )
                             ),
+
                         child: Text(
                         "병원기록",
                         style: TextStyle(
@@ -153,6 +152,7 @@ class FirstScreen extends StatelessWidget {
                                 image: AssetImage('assets/images/emergency.png'),
                             )
                         ),
+
                       ),
                     ),
                   ],
