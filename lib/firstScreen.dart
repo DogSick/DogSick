@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'emergency2.dart';
 import 'location.dart';
 import 'searchHospital.dart';
 import 'mapMain.dart';
@@ -131,7 +132,7 @@ class FirstScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Emergency()),
+                          MaterialPageRoute(builder: (context) => Emergency2()),
                         );
                       },
                       child: Container(
