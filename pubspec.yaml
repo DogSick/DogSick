@@ -83,7 +83,6 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
-    - .env
     - assets/images/
     - .env
     - assets/data/hospitalData.json
