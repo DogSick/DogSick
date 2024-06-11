@@ -1,9 +1,9 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'location.dart';
+import 'hospitalDetail.dart';
+
 
 class SearchHospital extends StatelessWidget {
   const SearchHospital({super.key});
@@ -11,6 +11,8 @@ class SearchHospital extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Pretendard'),
       home: SearchApp(),
     );
   }
@@ -48,8 +50,12 @@ class _SearchAppState extends State<SearchApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         centerTitle: true,
+        leading: BackButton(
+          color: Color(0xff63C54A),
+        ),
         title: Column(
           children: [
             Text(
@@ -62,9 +68,14 @@ class _SearchAppState extends State<SearchApp> {
                 Image.asset('assets/images/Location.png'),
                 Locate(),
               ],
-            ),
+            )
           ],
         ),
+        actions: [
+          SizedBox(
+            width: 60,
+          ),
+        ],
       ),
       body: Container(
         color: Colors.white,
@@ -113,17 +124,136 @@ class _SearchAppState extends State<SearchApp> {
                   : ListView.builder(
                       itemBuilder: (context, index) {
                         return Card(
+                          margin: EdgeInsets.only(top: 10),
                           child: Container(
+                            color: Colors.white,
                             padding: EdgeInsets.all(10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(filteredData[index]['bplcnm'].toString()),
-                                Text(filteredData[index]['lindjobgbnnm']
-                                    .toString()),
-                                Text(filteredData[index]['rdnwhladdr']
-                                    .toString()),
-                                Text(filteredData[index]['sitetel'].toString())
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      filteredData[index]['bplcnm'].toString(),
+                                      style: TextStyle(fontSize: 12),
+                                    ),
+                                    Container(
+                                      margin: EdgeInsets.only(left: 10),
+                                      child: Text(
+                                        filteredData[index]['lindjobgbnnm']
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: 8,
+                                          color: Color.fromRGBO(
+                                              153, 153, 153, 100),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    filteredData[index]['rdnwhladdr']
+                                        .toString(),
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color:
+                                            Color.fromRGBO(153, 153, 153, 100)),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    filteredData[index]['sitetel'].toString(),
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        color:
+                                            Color.fromRGBO(112, 178, 222, 100)),
+                                  ),
+                                ),
+                                Container(
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(right: 3),
+                                        child: Icon(
+                                          Icons.watch_later,
+                                          size: 15,
+                                          color:
+                                              Color.fromRGBO(99, 197, 74, 100),
+                                        ),
+                                      ),
+                                      Text(
+                                        filteredData[index]['openhour']
+                                            .toString(),
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Text(
+                                        '~',
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Text(
+                                        filteredData[index]['closehour']
+                                            .toString(),
+                                        style: TextStyle(fontSize: 12),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10),
+                                        child: Text(
+                                          '휴무일 : ',
+                                          style: TextStyle(fontSize: 10),
+                                        ),
+                                      ),
+                                      Container(
+                                        width: 90,
+                                        child: Text(
+                                          filteredData[index]['closeday'] !=
+                                                  'null'
+                                              ? filteredData[index]['closeday']
+                                                  .toString()
+                                              : '없음',
+                                          style: TextStyle(fontSize: 10),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 66),
+                                        width: 100,
+                                        height: 30,
+                                        child: OutlinedButton(
+                                          onPressed: () {
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (context) =>
+                                            //         HospitalDetail(
+                                            //       bplcnm: filteredData[index]
+                                            //               ['bplcnm']
+                                            //           .toString(),
+                                            //     ),
+                                            //   ),
+                                            // );
+                                          },
+                                          child: Text(
+                                            '상세보기',
+                                            style: TextStyle(
+                                                fontSize: 8,
+                                                color: Color.fromRGBO(
+                                                    99, 197, 74, 100)),
+                                          ),
+                                          style: OutlinedButton.styleFrom(
+                                            backgroundColor: Colors.white,
+                                            side: BorderSide(
+                                              color: Color.fromRGBO(
+                                                  99, 197, 74, 100),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
