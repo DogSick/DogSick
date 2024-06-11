@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'location.dart';
+
 late SharedPreferences prefs;
 
 class Memo extends StatefulWidget {
@@ -62,10 +64,7 @@ class _MemoState extends State<Memo> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset('assets/images/icon_location.png'),
-                Text(
-                  '강남구 신사동 115-8',
-                  style: TextStyle(fontSize: 10),
-                ),
+                Locate(),
               ],
             )
           ],
@@ -149,8 +148,10 @@ class _MemoState extends State<Memo> {
                       ),
                     ),
                     onTap: () {
-                      Navigator.of(context).pushNamed('/memoDetail',
-                          arguments: list?[index]['myDogCode']);
+                      if (list?[index]['myDogCode'] != 0) {
+                        Navigator.of(context).pushNamed('/memoDetail',
+                            arguments: list?[index]['myDogCode']);
+                      }
                     },
                   ),
                 );
@@ -161,7 +162,8 @@ class _MemoState extends State<Memo> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          Navigator.of(context).pushNamed('/newMemo');
+          Navigator.of(context).pushNamed('/newMemo',
+              arguments: prefs.getString("position").toString());
           // String testUrl = 'http://10.0.2.2:8080/mydog/header';
           // Map<String, String> headers = {'test': 'test'};
           //
