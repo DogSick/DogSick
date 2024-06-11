@@ -23,13 +23,14 @@ class _NewMemoState extends State<NewMemo> {
   @override
   void initState() {
     super.initState();
-    // _selectedDate = DateTime.now();
+    _selectedDate = DateTime.now();
     _myDogLocation = TextEditingController();
     _myDogMemo = TextEditingController();
   }
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -49,8 +50,10 @@ class _NewMemoState extends State<NewMemo> {
               children: [
                 Image.asset('assets/images/icon_location.png'),
                 Text(
-                  '강남구 신사동 115-8',
-                  style: TextStyle(fontSize: 10),
+                  '$args',
+                  style: TextStyle(
+                    fontSize: 10,
+                  ),
                 ),
               ],
             )
@@ -144,6 +147,7 @@ class _NewMemoState extends State<NewMemo> {
                   SizedBox(
                     width: 200,
                     child: TextField(
+                      undoController: UndoHistoryController(),
                       controller: _myDogLocation,
                       keyboardType: TextInputType.text,
                       style: TextStyle(

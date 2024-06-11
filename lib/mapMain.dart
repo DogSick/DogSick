@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 
+import 'location.dart';
 
 class MapMain extends StatefulWidget {
   MapMain({Key? key}) : super(key: key);
@@ -51,10 +52,7 @@ class _MapMainState extends State<MapMain> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset('assets/images/icon_location.png'),
-                Text(
-                  '강남구 신사동 115-8',
-                  style: TextStyle(fontSize: 10),
-                ),
+                Locate(),
               ],
             )
           ],
@@ -65,6 +63,7 @@ class _MapMainState extends State<MapMain> {
           ),
         ],
       ),
+
       body: Stack(
         children: <Widget>[
         NaverMap(
