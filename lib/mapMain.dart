@@ -48,7 +48,8 @@ class MapMain extends StatefulWidget {
   MapMain({Key? key}) : super(key: key);
 
   NaverMapViewOptions options = const NaverMapViewOptions(
-    initialCameraPosition: NCameraPosition(target: NLatLng(37.4988, 127.0267), zoom: 16),
+    initialCameraPosition:
+        NCameraPosition(target: NLatLng(37.4988, 127.0267), zoom: 16),
     mapType: NMapType.basic,
     locationButtonEnable: true,
   );
@@ -139,6 +140,7 @@ class _MapMainState extends State<MapMain> {
       body: Stack(
         children: <Widget>[
           NaverMap(
+            // 카메라 위치 설정
             options: const NaverMapViewOptions(
               initialCameraPosition: NCameraPosition(
                   target: NLatLng(37.4988, 127.0267),
@@ -213,9 +215,12 @@ class _MapMainState extends State<MapMain> {
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SearchHospital()),);
               },
-              child: Text('병원목록', style: TextStyle(color: Colors.white),
+              child: Text(
+                '병원목록',
+                style: TextStyle(color: Colors.white),
               ),
-              style: ElevatedButton.styleFrom(backgroundColor: Color(0xff404a3c),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xff404a3c),
               ),
             ),
           ),
