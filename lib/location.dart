@@ -82,6 +82,8 @@ class _LocateState extends State<Locate> {
           ' ' +
           jsonObject['documents'][0]['region_3depth_name'].toString();
       prefs.setString("position", position);
+      prefs.setDouble("lat", lat);
+      prefs.setDouble("lng", lng);
     });
   }
 
