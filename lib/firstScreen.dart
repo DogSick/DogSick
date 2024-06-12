@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'location.dart';
 import 'searchHospital.dart';
@@ -12,7 +13,7 @@ class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'Pretendard'),
         home: Scaffold(
           backgroundColor: Colors.white,
@@ -56,17 +57,15 @@ class FirstScreen extends StatelessWidget {
                         alignment: Alignment(0.58, 0.8),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/images/myrecord.png'),
-                              )
-                            ),
-
+                          image: AssetImage('assets/images/myrecord.png'),
+                        )),
                         child: Text(
-                        "병원기록",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
+                          "병원기록",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                     InkWell(
@@ -91,9 +90,8 @@ class FirstScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/hospitalsearch.png'),
-                            )
-                        ),
+                          image: AssetImage('assets/images/hospitalsearch.png'),
+                        )),
                       ),
                     ),
                   ],
@@ -122,9 +120,8 @@ class FirstScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/nearhospital.png'),
-                            )
-                      ),
+                          image: AssetImage('assets/images/nearhospital.png'),
+                        )),
                       ),
                     ),
                     InkWell(
@@ -149,10 +146,8 @@ class FirstScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/emergency.png'),
-                            )
-                        ),
-
+                          image: AssetImage('assets/images/emergency.png'),
+                        )),
                       ),
                     ),
                   ],
