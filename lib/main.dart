@@ -4,7 +4,6 @@ import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'loadingMain.dart';
 import 'firstScreen.dart';
 import 'memo.dart';
 import 'memoDetail.dart';
@@ -27,7 +26,7 @@ void main() async {
     },
   );
 
-  await Future.delayed(const Duration(seconds: 3));
+  await Future.delayed(const Duration(seconds: 2));
   FlutterNativeSplash.remove();
 
   prefs = await SharedPreferences.getInstance();
