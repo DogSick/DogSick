@@ -62,9 +62,8 @@ class _EmergencyState extends State<Emergency2> {
           }
         },
       ),
-      floatingActionButton:
-      FloatingActionButton(
-        backgroundColor:Colors.red,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
         onPressed: () async {
           prefs = await SharedPreferences.getInstance();
           double? lat = prefs.getDouble('lat');
@@ -73,15 +72,16 @@ class _EmergencyState extends State<Emergency2> {
           print(lng);
 
           String url = 'https://dapi.kakao.com/v2/local/search/keyword';
-          String api = '933d2df92a5af1c1024efdf32b3f268a';
-          String requestUrl = url + '.json?y=$lat&x=$lng&query=24시'
-              ' 동물병원&sort=distance';
+          String api = '';
+          String requestUrl = url +
+              '.json?y=$lat&x=$lng&query=24시'
+                  ' 동물병원&sort=distance';
           print(requestUrl);
 
-          var response = await http.get(Uri.parse(requestUrl),
-          headers: {"Authorization": "KakaoAK $api"},
-            var url = '';
-
+          var response = await http.get(
+            Uri.parse(requestUrl),
+            headers: {"Authorization": "KakaoAK $api"},
+            // var url = '';
           );
           print(response);
           var jsonObject = await jsonDecode(response.body);
@@ -90,14 +90,19 @@ class _EmergencyState extends State<Emergency2> {
           print('check');
           print(jsonObject['documents'][0]);
 
-          address = Uri.parse('tel:${jsonObject['phone']}');
-          if (await canLaunchUrl(url)) {
-            await launchUrl(url);
+          final address =
+              Uri.parse('tel:${jsonObject['documents'][0]['phone']}');
+          if (await canLaunchUrl(address)) {
+            await launchUrl(address);
           } else {
             print("Can't launch $url");
           }
-
-      }, child: Icon(Icons.emergency, color: Colors.white,),),
+        },
+        child: Icon(
+          Icons.emergency,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 

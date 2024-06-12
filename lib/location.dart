@@ -21,7 +21,7 @@ class _LocateState extends State<Locate> {
   double lat = 0;
   double lng = 0;
   String apiUrl = 'https://dapi.kakao.com/v2/local/geo/coord2regioncode';
-  String apiKey = '933d2df92a5af1c1024efdf32b3f268a';
+  String apiKey = '';
   String position = '';
 
   _locateMe() async {
