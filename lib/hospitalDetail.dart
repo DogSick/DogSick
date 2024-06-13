@@ -81,10 +81,11 @@ class HospitalDetail extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Stack(
         children: [
-          Image.asset(
-            'assets/images/hop.png',
-            fit: BoxFit.fitHeight,
+          Image.network(
+            '${hospital['image']}',
+            fit: BoxFit.cover,
             height: 500,
+            width: 450,
           ),
           Container(
             margin: EdgeInsets.only(top: 410),
@@ -118,14 +119,24 @@ class HospitalDetail extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Color.fromRGBO(99, 197, 74, 100),
-                          ),
-                          Text('${hospital['sitewhladdr']}'),
-                        ],
+                      Container(
+                        width: 500,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: Color.fromRGBO(99, 197, 74, 100),
+                            ),
+                            Container(
+                              width: 320,
+                              child: Text(
+                                '${hospital['sitewhladdr']}',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 5,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(height: 10),
                       Row(
