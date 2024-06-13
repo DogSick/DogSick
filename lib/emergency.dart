@@ -209,7 +209,7 @@ class _EmergencyState extends State<Emergency> {
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.lightBlueAccent,
-                    decoration: TextDecoration.underline,
+                    // decoration: TextDecoration.underline,
                     decorationColor: Colors.lightBlueAccent),
               )
             ],

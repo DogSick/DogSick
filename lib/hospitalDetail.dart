@@ -112,8 +112,13 @@ class HospitalDetail extends StatelessWidget {
                             Icons.phone,
                             color: Color.fromRGBO(99, 197, 74, 100),
                           ),
-                          Text(
-                            '${hospital['sitetel']}',
+                          Container(
+                            margin: EdgeInsets.only(left: 3),
+                            child:
+                              Text(
+                              '${hospital['sitetel']}',
+                              style: TextStyle(color: Colors.lightBlueAccent),
+                          ),
                           ),
                         ],
                       ),

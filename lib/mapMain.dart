@@ -36,7 +36,7 @@ class Hospital {
       phone: json['sitetel'],
       latitude: double.parse(json['y']),
       longitude: double.parse(json['x']),
-      imageUrl: 'assets/images/hanaka_hospital.jpg', // Replace with actual image path if available
+      imageUrl: json['image'], // Replace with actual image path if available
       openhour: json['openhour'],
       closehour: json['closehour'],
       closeday: json['closeday'],
@@ -49,7 +49,7 @@ class MapMain extends StatefulWidget {
 
   NaverMapViewOptions options = const NaverMapViewOptions(
     initialCameraPosition:
-        NCameraPosition(target: NLatLng(37.4988, 127.0267), zoom: 16),
+    NCameraPosition(target: NLatLng(37.4988, 127.0267), zoom: 16),
     mapType: NMapType.basic,
     locationButtonEnable: true,
   );
@@ -65,6 +65,7 @@ class _MapMainState extends State<MapMain> {
   List<Hospital> hospitals = [];
   bool _showBottomSheet = false;
   Hospital? _selectedHospital;
+  double? _distance;
 
   @override
   void initState() {
@@ -177,28 +178,29 @@ class _MapMainState extends State<MapMain> {
               );
 
               for (Hospital hospital in hospitals) {
-                  double distance = calculateDistance(37.4988, 127.0267, hospital.latitude, hospital.longitude);
-                  if (distance <= 1.5) {
-                    final marker = NMarker(
-                      id: hospital.name,
-                      position: NLatLng(hospital.latitude, hospital.longitude),
-                      anchor: const NPoint(0.5, 0.5),
-                      size: const Size(60, 60),
-                      icon: const NOverlayImage.fromAssetImage('assets/images/marker.png'),
-                    );
+                double distance = calculateDistance(37.4988, 127.0267, hospital.latitude, hospital.longitude);
+                if (distance <= 1.5) {
+                  final marker = NMarker(
+                    id: hospital.name,
+                    position: NLatLng(hospital.latitude, hospital.longitude),
+                    anchor: const NPoint(0.5, 0.5),
+                    size: const Size(60, 60),
+                    icon: const NOverlayImage.fromAssetImage('assets/images/marker.png'),
+                  );
 
-                    controller.addOverlay(marker);
+                  controller.addOverlay(marker);
 
-                    marker.setOnTapListener((NMarker marker) {
-                      _controller.updateCamera(NCameraUpdate.fromCameraPosition(NCameraPosition(target: marker.position, zoom: 16)));
-                      setState(() {
-                        _selectedHospital = hospital;
-                        _showBottomSheet = true;
-                      });
+                  marker.setOnTapListener((NMarker marker) {
+                    _controller.updateCamera(NCameraUpdate.fromCameraPosition(NCameraPosition(target: marker.position, zoom: 18)));
+                    setState(() {
+                      _selectedHospital = hospital;
+                      _distance = distance;
+                      _showBottomSheet = true;
                     });
-                  }
+                  });
+                }
               }
-                    controller.addOverlay(location);
+              controller.addOverlay(location);
             },
             onMapTapped: (NPoint point, NLatLng latLng) {
               setState(() {
@@ -225,7 +227,7 @@ class _MapMainState extends State<MapMain> {
             ),
           ),
           _showBottomSheet && _selectedHospital != null
-              ? HospitalInfoWidget(hospital: _selectedHospital!)
+              ? HospitalInfoWidget(hospital: _selectedHospital!, distance: _distance!)
               : Container(),
         ],
       ),
@@ -235,8 +237,9 @@ class _MapMainState extends State<MapMain> {
 
 class HospitalInfoWidget extends StatelessWidget {
   final Hospital hospital;
+  final double distance;
 
-  const HospitalInfoWidget({required this.hospital, Key? key}) : super(key: key);
+  const HospitalInfoWidget({required this.hospital, required this.distance, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -252,7 +255,7 @@ class HospitalInfoWidget extends StatelessWidget {
           ),
         ),
         width: 200,
-        height: 100.0,
+        height: 120.0,
         child: Column(
           children: [
             Row(
@@ -260,11 +263,11 @@ class HospitalInfoWidget extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 10, bottom: 10, left: 10),
                   width: 100,
-                  height: 80,
+                  height: 100,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20.0),
                     child: SizedBox(
-                        child: Image(image: AssetImage(hospital.imageUrl),
+                        child: Image.network('${hospital.imageUrl}',
                           fit: BoxFit.cover,
                         )
                     ),
@@ -273,25 +276,31 @@ class HospitalInfoWidget extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: EdgeInsets.only(top: 10, left: 10, bottom: 10),
-                  height: 60,
-                  width: 150,
+                  height: 80,
+                  width: 160,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(hospital.name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
                       Container(
-                        padding: EdgeInsets.only(right: 24),
+                        width: 160,
+                        child: Text(hospital.name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(right: 24, top: 20),
+                        width: 100,
                         child:
-                        Text(hospital.phone, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xff999999)),),
+                        Text(hospital.phone, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Colors.lightBlueAccent),),
                       ),
                       Container(
                         padding: EdgeInsets.only(right: 25),
                         width: 100,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('영업중', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xff999999)),),
-                            Text('530m', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xff999999)),)
+                            Text('${distance.toStringAsFixed(2)} km', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xff999999)),)
                           ],
                         ),
                       ),
@@ -300,7 +309,7 @@ class HospitalInfoWidget extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.only(left: 10),
-                  padding: EdgeInsets.only(top: 25),
+                  padding: EdgeInsets.only(top: 35),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.push(context,
