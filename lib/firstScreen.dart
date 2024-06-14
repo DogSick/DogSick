@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'emergency2.dart';
 import 'location.dart';
 import 'searchHospital.dart';
 import 'mapMain.dart';
@@ -13,12 +12,9 @@ class FirstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
         theme: ThemeData(fontFamily: 'Pretendard'),
         home: Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor: Colors.white,
             centerTitle: true,
             title: Column(
               children: [
@@ -51,23 +47,21 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: 200,
-                        height: 229,
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.32,
                         margin: EdgeInsets.all(0),
-                        alignment: Alignment(0.58, 0.8),
+                        alignment: Alignment(0.7, 0.8),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage('assets/images/myrecord.png'),
-                              )
-                            ),
-
+                                image: AssetImage('assets/images/myrecord.png'),
+                                fit: BoxFit.fill)),
                         child: Text(
-                        "병원기록",
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
+                          "MyDog \n 병원기록",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                     InkWell(
@@ -79,22 +73,22 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: 200,
-                        height: 344.5,
-                        alignment: Alignment(-0.45, 0.8),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.43,
+                        alignment: Alignment(-0.7, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
                           "병원검색",
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/hospitalsearch.png'),
-                            )
-                        ),
+                                image: AssetImage(
+                                    'assets/images/hospitalsearch.png'),
+                                fit: BoxFit.fill)),
                       ),
                     ),
                   ],
@@ -110,50 +104,49 @@ class FirstScreen extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        width: 200,
-                        height: 344.5,
-                        alignment: Alignment(-0.15, 0.83),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.43,
+                        alignment: Alignment(-0.6, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
                           "가까운 병원 검색",
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Color(0xff63C54A)),
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/nearhospital.png'),
-                            )
-                      ),
+                                image: AssetImage(
+                                    'assets/images/nearhospital.png'),
+                                fit: BoxFit.fill)),
                       ),
                     ),
                     InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Emergency2()),
+                          MaterialPageRoute(builder: (context) => Emergency()),
                         );
                       },
                       child: Container(
-                        width: 200,
-                        height: 229,
-                        alignment: Alignment(-0.42, 0.68),
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        height: MediaQuery.of(context).size.height * 0.32,
+                        alignment: Alignment(-0.6, 0.8),
                         margin: EdgeInsets.all(0),
                         child: Text(
                           "응급 상황",
                           style: TextStyle(
                               fontFamily: 'Pretendard',
-                              fontSize: 18,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         ),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/images/emergency.png'),
-                            )
-                        ),
-
+                                image:
+                                    AssetImage('assets/images/emergency.png'),
+                                fit: BoxFit.fill)),
                       ),
                     ),
                   ],
