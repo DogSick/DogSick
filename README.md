@@ -1,12 +1,18 @@
 <br>
 <h1 align="middle" style="text-weight: bold">DogSick 위치 기반 동물병원 안내</h1>
 
+<div align="center">
+  <img src="https://github.com/DogSick/DogSick/assets/134928447/0eea1ffb-8b92-4e55-ac6f-24ddcf1efb9e" height=100 width=100>
+  <img src="https://github.com/DogSick/DogSick/assets/134928447/b2a8df19-e31e-4be8-85ee-a90492fa9a84">
+</div>
+
+
 
 ## 프로젝트 소개
 사용자의 위치를 기반으로 주변 동물 병원 안내하는 서비스입니다.
 <br>
 
-🚩 프로젝트 개발기간 : 2024.05.28 ~
+🚩 프로젝트 개발기간 : 2024.06.05 ~
 
 ## 멤버 구성
 <div align="center">
@@ -27,6 +33,8 @@
 6. 사용자는 동물 병원의 상세 정보(위치, 전화번호, 운영 시간, 주차 가능 여부)를 알 수 있다.
 7. 사용자는 전화 번호 클릭 시 동물병원에 전화를 할 수 있다.
 8. 사용자는 자주 가는 동물병원을 즐겨찾기 목록에 추가 할 수 있다.
+9. 사용자는 반려동물의 병원 기록을 메모장에 적을 수 있다.
+10. 사용자는 위급 상황 시 가장 가까운 24시간 운영하는 동물병원으로 검색없이 바로 전화 할 수 있다.
 
 
 ## 사용 기술

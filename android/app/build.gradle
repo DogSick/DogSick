@@ -23,6 +23,23 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+def naverApiKey = localProperties.getProperty("naver.api.key")
+if (naverApiKey == null) {
+    throw new FileNotFoundException("Naver Api key not found. Deefine location with google.api.key in the local.properties file.")
+}
+android {
+    buildTypes {
+        debug {
+            manifestPlaceholders = [naverApiKey: naverApiKey]
+        }
+        release {
+            signingConfig signingConfigs.debug
+            manifestPlaceholders = [naverApiKey: naverApiKey]
+        }
+    }
+}
+
+
 android {
     namespace = "com.dogpamines.dogsick_project"
     compileSdk = flutter.compileSdkVersion
@@ -42,6 +59,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+        minSdkVersion 23
     }
 
     buildTypes {
